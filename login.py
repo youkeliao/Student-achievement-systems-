@@ -48,7 +48,7 @@ def login_students():
         print("请重新输入")
         login_students()
     else:
-        print("登录成功，学生信息为：", data[0], "排序规则：座号姓名语数英政史地物化生总分密码")
+        print("登录成功，学生信息为：", data[0][1], "排序规则：座号姓名语数英政史地物化生总分密码")
         for i in range(0, len(data)):
             result09 = list(list(data[0]))[2:11]
             result = []

@@ -3,6 +3,8 @@ from pymysql.constants import CLIENT
 from pyecharts.charts import Pie
 from pyecharts.charts import Radar
 from pyecharts import options as opts
+
+
 # from line_profiler_pycharm import profile
 
 # @profile
@@ -47,7 +49,6 @@ def students_pie():
 
 # @profile
 def students_radar():
-
     host = "localhost"
     port = 3306
     user = "root"
@@ -86,7 +87,7 @@ def students_radar():
     cursor.execute(sql9)
     data9 = cursor.fetchone()
 
-    avg = [[data[0], data9[0], data8[0], data7[0], data6[0], data5[0], data4[0], data3[0], data2[0]]]
+    avg = [[data[0], data2[0], data3[0], data4[0], data5[0], data6[0], data7[0], data8[0], data9[0]]]
     high = "SELECT * FROM stu排名 limit 0,1"
     cursor.execute(high)
     higher = cursor.fetchone()
@@ -122,6 +123,7 @@ def students_radar():
 
     cursor.close()
     db.close()
+
 
 def students_self(data=None):
     if data is None:
@@ -176,7 +178,6 @@ def students_self(data=None):
 if __name__ == '__main__':
     students_pie()
     students_radar()
-
 
 # @profile
 # def lab():

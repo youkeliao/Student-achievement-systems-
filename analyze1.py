@@ -3,6 +3,8 @@ from decimal import Decimal
 from pyecharts.charts import Bar
 from pyecharts import options as opts
 
+import model
+
 
 def students_data():
     host = "localhost"
@@ -19,6 +21,8 @@ def students_data():
     data = cursor.fetchone()
     a = data[0]
     num = Decimal(a).quantize(Decimal("0.1"), rounding="ROUND_HALF_UP")
+    num = float(num)
+    # print(type(num))
     # 结果：527.3
 
     sql2 = "SELECT total FROM stu"
@@ -28,14 +32,15 @@ def students_data():
     total0 = []
     for i in range(0, 98):
         total0.append(int(result2[i][0]))
-    total = [n for n in total0 if n >= 527.3]
+    total = [n for n in total0 if n >= num]
     # print(total)  # 及格的分
-    sql3 = "SELECT * FROM stu WHERE total>= 527.3"
+    sql3 = f"SELECT * FROM stu WHERE total>= {num}"
     cursor.execute(sql3)
     result3 = cursor.fetchall()
     result3 = list(result3)
+    # print(len(result3))
     names = []
-    for i in range(0, 51):
+    for i in range(0, len(result3)):
         names.append(str(result3[i][1]))
     # print(result3)
     # print(names)
@@ -59,6 +64,10 @@ def students_data():
     cursor.close()
     db.close()
     return num
+
+
+def students_complete():
+    pass
 
 
 if __name__ == '__main__':
